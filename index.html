@@ -49,7 +49,7 @@ var block_size = 0;
 var hide_arr=[];
 var select_rect=[-1,-1];
 var border_width=0.04;
-var stage=95;
+var stage=0;
 function rand_int(minNum,maxNum){ 
 	return parseInt(Math.random()*(maxNum-minNum)+minNum); 
 } 
@@ -137,6 +137,7 @@ function load_next_stage() {
 	init_game();
 	refresh_bg();
 	document.getElementById('header').innerText='第'+stage+'关';
+	localStorage.setItem('stage',stage);
 }
 function set_word_select(x,y) {
 	select_rect=[x,y];
@@ -375,6 +376,10 @@ function init_game(){
 
 
 window.onload=function(){
+	var his_stage = localStorage.getItem('stage');
+	if(his_stage!=null){
+		stage=parseInt(his_stage)-1;
+	}
 	var documentWidth = window.screen.availWidth
 	block_size = 9.0/block_num;
 
